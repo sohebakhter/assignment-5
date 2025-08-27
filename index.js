@@ -15,6 +15,32 @@ for (button of buttons) {
 
 }
 
+//copy button count 
+const btns = document.getElementsByClassName('btn-copy')
+const copyCount = document.getElementById('copy-count')
+let countt = 0;
+
+for (btn of btns) {
+    btn.addEventListener('click', function () {
+        alert('Hotline number copied');
+        countt++;
+        copyCount.innerText = countt;
+
+    })
+
+}
+
+// copy button copy text in clipboard
+document.querySelectorAll('.btn-copy').forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.card');
+    const text = card.querySelector('.copy-text').textContent.trim();
+
+    navigator.clipboard.writeText(text);
+  });
+});
+
+
 
 
 // call buttons section
