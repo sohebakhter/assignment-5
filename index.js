@@ -30,14 +30,14 @@ for (btn of btns) {
 
 }
 
-// copy button copy text in clipboard
+// by copy button: copy text in clipboard
 document.querySelectorAll('.btn-copy').forEach(button => {
-  button.addEventListener('click', () => {
-    const card = button.closest('.card');
-    const text = card.querySelector('.copy-text').textContent.trim();
+    button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const text = card.querySelector('.copy-text').textContent.trim();
 
-    navigator.clipboard.writeText(text);
-  });
+        navigator.clipboard.writeText(text);
+    });
 });
 
 
@@ -50,33 +50,38 @@ let coinCount = parseInt(document.getElementById('coin-count').textContent);
 
 const coin = document.getElementById('coin-count');
 
-const callButtons = document.getElementsByClassName('btn-call')
-for (const callButton of callButtons) {
-    callButton.addEventListener('click', function () {
+const callButtons = document.querySelectorAll('.btn-call')
+callButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
 
-        alert('Calling... ' + document.getElementById('service-name').innerText + ' ' + document.getElementById('service-number').innerText);
-
+        //reducing coin from this part
         coinCount -= 20;
 
         if (coinCount !== 20 && coinCount < 0) {
             alert('Not Enough Coin Please Recharge');
             return;
         }
-
         coin.textContent = coinCount;
 
+        //making call history info dynamic
+
+        const card = btn.closest('.card');
+        const serviceName = card.querySelector('.service-name').innerText;
+        const serviceNumber = card.querySelector('#service-number').innerText;
+        console.log(serviceName, serviceNumber)
         const data = {
-            name: document.getElementById('service-name').innerText,
-            number: document.getElementById('service-number').innerText,
+            name: serviceName,
+            number: serviceNumber,
             time: new Date().toLocaleTimeString()
         }
         callHistoryData.push(data);
-        console.log(callHistoryData);
-        
-        
+
+        alert('Calling..' + serviceName + ' ' + serviceNumber);
+
+        // history cards adding from this part
         const callHistoryContainer = document.getElementById('history-card-container')
         callHistoryContainer.innerText = ''
-        
+
         for (const data of callHistoryData) {
             const div = document.createElement('div')
             div.innerHTML = `
@@ -93,12 +98,25 @@ for (const callButton of callButtons) {
                                 </div>
             `
             callHistoryContainer.appendChild(div);
-        
+
         }
-        
+
     });
-    
-}
+
+});
+
+// Clear button
+const clearBtn = document.getElementById('btn-clear');
+
+const cardContainer = document.getElementById('history-card-container');
+
+clearBtn.addEventListener('click', () => {
+
+    cardContainer.innerHTML = '';
+
+    callHistoryData = [];
+});
+
 
 
 
