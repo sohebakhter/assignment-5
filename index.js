@@ -58,7 +58,7 @@ callButtons.forEach((btn, index) => {
         coinCount -= 20;
 
         if (coinCount !== 20 && coinCount < 0) {
-            alert('Not Enough Coin Please Recharge');
+            alert('Not Enough Coin, Need Atleast 20 Coin For Calling');
             return;
         }
         coin.textContent = coinCount;

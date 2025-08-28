@@ -26,4 +26,3 @@ _preventDefault() is use for stop loading of a website. its works in a click of 
 _stopPropagation() its works with a condition. we use it in a javascript condition. for stop the condition if its based with stopPropagation.
 normally when we have a some condition in a same loop or in same events we use it there for stoping the committed condition.
 
-<!-- দোয়া চাই, কোন কপি পেস্ট করিনি। আপনাদের সহযোগিতায় যত টুকু অর্জন করতে পেরেছি -->
